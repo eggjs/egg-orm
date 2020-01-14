@@ -1,0 +1,36 @@
+{
+  "name": "egg-orm",
+  "version": "1.0.0",
+  "description": "Object relational mapping for Egg applications",
+  "eggPlugin": {
+    "name": "orm"
+  },
+  "keywords": [
+    "egg",
+    "egg-plugin",
+    "sequelize",
+    "leoric",
+    "orm",
+    "model"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chen Yangjian <yicai.cyj@alibaba-inc.com>",
+  "license": "MIT",
+  "dependencies": {
+    "leoric": "^0.4.4"
+  },
+  "devDependencies": {
+    "egg": "^2.25.0",
+    "egg-bin": "^4.14.0",
+    "egg-mock": "^3.24.2",
+    "eslint": "^6.6.0",
+    "eslint-config-egg": "^7.5.1",
+    "mysql2": "^2.0.0"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  }
+}
