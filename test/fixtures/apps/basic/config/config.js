@@ -1,3 +1,5 @@
 'use strict';
 
-exports.leoric = {};
+exports.orm = {
+  database: 'egg-orm',
+};

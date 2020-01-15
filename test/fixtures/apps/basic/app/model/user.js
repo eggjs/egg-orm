@@ -1,9 +1,9 @@
 'use strict';
 
-module.exports = (app, Base) => {
-  const { STRING } = Base;
+module.exports = (app, Model) => {
+  const { STRING } = Model;
 
-  class User extends Base {
+  class User extends Model {
     static get schema() {
       return {
         name: { type: STRING, allowNull: false },
