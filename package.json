@@ -15,7 +15,9 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "egg-bin test"
+    "pretest": "./test/prepare.sh",
+    "test": "egg-bin test",
+    "coveralls": "egg-bin cov"
   },
   "author": "Chen Yangjian <yicai.cyj@alibaba-inc.com>",
   "license": "MIT",
