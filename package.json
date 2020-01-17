@@ -17,12 +17,13 @@
   "scripts": {
     "pretest": "./test/prepare.sh",
     "test": "egg-bin test",
+    "test-local": "egg-bin test",
     "coveralls": "egg-bin cov"
   },
   "author": "Chen Yangjian <yicai.cyj@alibaba-inc.com>",
   "license": "MIT",
   "dependencies": {
-    "leoric": "^0.4.4"
+    "leoric": "^0.5.0-alpha.1"
   },
   "devDependencies": {
     "egg": "^2.25.0",
