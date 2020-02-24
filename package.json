@@ -16,14 +16,14 @@
   "main": "index.js",
   "scripts": {
     "pretest": "./test/prepare.sh",
-    "test": "egg-bin test",
-    "test-local": "egg-bin test",
+    "test": "egg-bin test --full-trace",
+    "test-local": "egg-bin test --full-trace",
     "coveralls": "egg-bin cov"
   },
   "author": "Chen Yangjian <yicai.cyj@alibaba-inc.com>",
   "license": "MIT",
   "dependencies": {
-    "leoric": "^0.5.0-alpha.1"
+    "leoric": "^1.0.0"
   },
   "devDependencies": {
     "egg": "^2.25.0",
