@@ -6,7 +6,8 @@ module.exports = (app, Model) => {
   class User extends Model {
     static get schema() {
       return {
-        name: { type: STRING, allowNull: false },
+        nickname: { type: STRING, allowNull: false },
+        email: { type: STRING, allowNull: true },
       };
     }
   }

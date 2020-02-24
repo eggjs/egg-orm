@@ -8,9 +8,11 @@ module.exports = app => {
     }
 
     async create() {
-      await app.model.User.create({
-        name: this.ctx.request.body.name,
+      const user = await app.model.User.create({
+        nickname: this.ctx.request.body.nickname,
+        email: this.ctx.request.body.email,
       });
+      this.ctx.body = user;
     }
   };
 };
