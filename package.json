@@ -13,11 +13,17 @@
     "orm",
     "model"
   ],
-  "main": "index.js",
+  "main": "lib/loader.js",
+  "files": [
+    "config",
+    "lib",
+    "app.js",
+    "agent.js"
+  ],
   "scripts": {
     "pretest": "./test/prepare.sh",
-    "test": "egg-bin test --full-trace",
-    "test-local": "egg-bin test --full-trace",
+    "test": "DEBUG=leoric egg-bin test --full-trace",
+    "test-local": "DEBUG=leoric egg-bin test --full-trace",
     "coveralls": "egg-bin cov"
   },
   "author": "Chen Yangjian <yicai.cyj@alibaba-inc.com>",
