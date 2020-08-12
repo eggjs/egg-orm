@@ -3,7 +3,7 @@
 const assert = require('assert');
 const mm = require('egg-mock');
 
-describe('test/plugin.test.js', () => {
+describe('test/delegate.test.js', () => {
   let app;
 
   before(() => {
