@@ -1,5 +1,3 @@
 'use strict';
 
-module.exports = agent => {
-  require('./lib/loader')(agent);
-};
+module.exports = require('./lib/loader');

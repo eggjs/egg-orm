@@ -3,48 +3,48 @@
 const assert = require('assert');
 const mm = require('egg-mock');
 
-describe('test/plugin.test.js', () => {
+describe('test/delegate.test.js', () => {
   let app;
 
   before(() => {
     app = mm.app({
-      baseDir: 'apps/basic',
+      baseDir: 'apps/delegate',
     });
     return app.ready();
   });
 
   after(mm.restore);
 
-  describe('app.model', () => {
-    it('should be accessible via app.model', () => {
-      assert(app.model);
+  describe('app.orm', () => {
+    it('should be accessible via app.orm', () => {
+      assert(app.orm);
     });
   });
 
-  describe('ctx.model', () => {
+  describe('ctx.orm', () => {
     let ctx;
 
     beforeEach(() => {
       ctx = app.mockContext();
     });
 
-    it('should be accessible via ctx.model', () => {
-      assert(ctx.model);
-      // access twice to make sure avoiding duplicated model injection
-      const User = ctx.model.User;
-      assert(ctx.model.User === User);
-      assert(ctx.model.User === User);
-      assert(ctx.model !== app.model);
-      const ctxModel = ctx.model;
-      assert(ctx.model === ctxModel);
-      assert(ctx.model.User.ctx === ctx);
+    it('should be accessible via ctx.orm', () => {
+      assert(ctx.orm);
+      // access twice to make sure avoiding duplicated injection
+      const User = ctx.orm.User;
+      assert(ctx.orm.User === User);
+      assert(ctx.orm.User === User);
+      assert(ctx.orm !== app.orm);
+      const ctxModel = ctx.orm;
+      assert(ctx.orm === ctxModel);
+      assert(ctx.orm.User.ctx === ctx);
 
-      const user = ctx.model.User.build({
+      const user = ctx.orm.User.build({
         nickname: 'foo nickname',
       });
       assert(user.nickname === 'foo nickname');
 
-      const user2 = new ctx.model.User({
+      const user2 = new ctx.orm.User({
         nickname: 'bar nickname',
       });
       console.log(user2.toObject());
@@ -52,8 +52,8 @@ describe('test/plugin.test.js', () => {
     });
 
     it('should be able to access loaded models', () => {
-      const { User } = app.model;
-      const { User: ContextUser } = ctx.model;
+      const { User } = app.orm;
+      const { User: ContextUser } = ctx.orm;
 
       assert.ok(User);
       assert.ok(User.ctx == null);
@@ -64,8 +64,8 @@ describe('test/plugin.test.js', () => {
 
     it('should have different models on different contexts', () => {
       const ctx2 = app.mockContext();
-      assert.notEqual(ctx.model, ctx2.model);
-      assert.notEqual(ctx.model.User, ctx2.model.User);
+      assert.notEqual(ctx.orm, ctx2.orm);
+      assert.notEqual(ctx.orm.User, ctx2.orm.User);
     });
 
     describe('GET /users/:id, POST /users', () => {
@@ -73,20 +73,20 @@ describe('test/plugin.test.js', () => {
         const res = await app.httpRequest()
           .post('/users')
           .send({
-            nickname: 'jack',
-            email: 'jack@example.com',
+            nickname: 'rose',
+            email: 'rose@example.com',
           });
         assert(res.status === 200);
         assert(res.body.id);
-        assert(res.body.nickname === 'jack');
-        assert(res.body.email === 'jack@example.com');
+        assert(res.body.nickname === 'rose');
+        assert(res.body.email === 'rose@example.com');
         assert(res.body.createdAt);
 
         const res2 = await app.httpRequest()
           .get(`/users/${res.body.id}`)
           .send({
-            nickname: 'jack',
-            email: 'jack@example.com',
+            nickname: 'rose',
+            email: 'rose@example.com',
           });
         assert(res2.status === 200);
         assert.deepEqual(res2.body, res.body);

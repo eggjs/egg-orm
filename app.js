@@ -1,5 +1,3 @@
 'use strict';
 
-module.exports = app => {
-  require('./lib/loader')(app);
-};
+module.exports = require('./lib/loader');
