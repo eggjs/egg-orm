@@ -77,7 +77,7 @@ describe('test/plugin.test.js', () => {
             email: 'jack@example.com',
           });
         assert(res.status === 200);
-        assert(res.body.id === 1);
+        assert(res.body.id);
         assert(res.body.nickname === 'jack');
         assert(res.body.email === 'jack@example.com');
         assert(res.body.createdAt);
