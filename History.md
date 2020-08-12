@@ -1,4 +1,10 @@
 
+1.1.0 / 2020-08-12
+==================
+
+**others**
+  * [[`816c27e`](http://github.com/eggjs/egg-orm/commit/816c27ef33b8fc19e43cb0dfa835ff737c8f3551)] - fix delegate and lazy load database (#4) (Yiyu He <<dead_horse@qq.com>>)
+
 1.0.0 / 2020-02-24
 ==================
 
