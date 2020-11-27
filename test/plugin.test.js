@@ -28,7 +28,7 @@ describe('test/plugin.test.js', () => {
       ctx = app.mockContext();
     });
 
-    it('should be accessible via ctx.model', () => {
+    it('should be accessible via ctx.model by extends', () => {
       assert(ctx.model);
       // access twice to make sure avoiding duplicated model injection
       const User = ctx.model.User;
@@ -51,7 +51,7 @@ describe('test/plugin.test.js', () => {
       assert(user2.nickname === 'bar nickname');
     });
 
-    it('should be able to access loaded models', () => {
+    it('should be able to access loaded models by extends', () => {
       const { User } = app.model;
       const { User: ContextUser } = ctx.model;
 
@@ -60,6 +60,40 @@ describe('test/plugin.test.js', () => {
       // subclass
       assert.ok(ContextUser.prototype instanceof User);
       assert.equal(ContextUser.ctx, ctx);
+    });
+
+    it('should be accessible via ctx.model by define', () => {
+      assert(ctx.model);
+      // access twice to make sure avoiding duplicated model injection
+      const Post = ctx.model.Post;
+      assert(ctx.model.Post === Post);
+      assert(ctx.model.Post === Post);
+      assert(ctx.model !== app.model);
+      const ctxModel = ctx.model;
+      assert(ctx.model === ctxModel);
+      assert(ctx.model.Post.ctx === ctx);
+
+      const post = ctx.model.Post.build({
+        description: 'foo nickname',
+      });
+      assert(post.description === 'foo nickname');
+
+      const post2 = new ctx.model.Post({
+        description: 'bar nickname',
+      });
+      console.log(post2.toObject());
+      assert(post2.description === 'bar nickname');
+    });
+
+    it('should be able to access loaded models by define', () => {
+      const { Post } = app.model;
+      const { Post: ContextPost } = ctx.model;
+
+      assert.ok(Post);
+      assert.ok(Post.ctx == null);
+      // subclass
+      assert.ok(ContextPost.prototype instanceof Post);
+      assert.equal(ContextPost.ctx, ctx);
     });
 
     it('should have different models on different contexts', () => {
