@@ -1,4 +1,11 @@
 
+
+1.1.1 / 2020-11-30
+==================
+
+**others**
+  * [#5](https://github.com/eggjs/egg-orm/pull/5) - fix: realm.define (jimmydaddy <<heyjimmygo@gmail.com>>)
+
 1.1.0 / 2020-08-12
 ==================
 
