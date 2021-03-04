@@ -1,4 +1,9 @@
 
+1.1.2 / 2021-03-04
+==================
+
+**others**
+  * [#7](https://github.com/eggjs/egg-orm/pull/7) - fix: ctx is undefined while custom setter executing (jimmydaddy <<heyjimmygo@gmail.com>>)
 
 1.1.1 / 2020-11-30
 ==================
