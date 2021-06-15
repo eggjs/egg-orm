@@ -1,6 +1,6 @@
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const mm = require('egg-mock');
 
 describe('test/delegate.test.js', () => {
@@ -30,6 +30,8 @@ describe('test/delegate.test.js', () => {
 
     it('should be accessible via ctx.orm', () => {
       assert(ctx.orm);
+      assert(ctx.orm.ctx === ctx);
+
       // access twice to make sure avoiding duplicated injection
       const User = ctx.orm.User;
       assert(ctx.orm.User === User);
