@@ -1,6 +1,6 @@
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const mm = require('egg-mock');
 
 describe('test/plugin.test.js', () => {

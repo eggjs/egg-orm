@@ -29,7 +29,7 @@
   "author": "Chen Yangjian <yicai.cyj@alibaba-inc.com>",
   "license": "MIT",
   "dependencies": {
-    "leoric": "^1.0.0"
+    "leoric": "^1.4.0-alpha.3"
   },
   "devDependencies": {
     "egg": "^2.25.0",
