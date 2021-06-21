@@ -1,23 +1,21 @@
 # egg-orm
 
-[中文介绍](Readme.zh-CN.md)
+egg-orm 是一个适用于 Egg 框架的数据模型层插件，egg-orm 的对象关系映射能力来自 [Leoric](https://leoric.js.org)。
 
-Yet another object-relational mapping plugin for Egg, which is based on [Leoric](https://leoric.js.org).
-
-## Install
+## 安装
 
 ```bash
 $ npm i --save egg-orm
-$ npm install --save mysql2   # MySQL or compatible dialects
+$ npm install --save mysql2   # MySQL 或者其他兼容 MySQL 的数据库
 
-# Or use other database backend.
+# 其他数据库类型
 $ npm install --save pg       # PostgreSQL
 $ npm install --save sqlite3  # SQLite
 ```
 
-## Usage
+## 使用
 
-With egg-orm you can define models in `app/model`:
+开启 egg-orm 插件即可在 `app/model` 中定义数据模型：
 
 ```js
 // app/model/user.js
@@ -34,7 +32,7 @@ module.exports = function(app) {
 }
 ```
 
-and use them like below:
+在 Controller 调用：
 
 ```js
 // app/controller/home.js
@@ -49,9 +47,9 @@ module.exports = class HomeController extends Controller {
 };
 ```
 
-## Configuration
+## 配置
 
-Firstly, enable egg-orm plugin:
+首先开启（并安装） egg-orm 插件
 
 ```js
 // config/plugin.js
@@ -61,7 +59,7 @@ exports.orm = {
 };
 ```
 
-Secondly, configure the plugin accordingly:
+然后按需配置数据库：
 
 ```js
 // config/config.default.js
@@ -73,8 +71,8 @@ exports.orm = {
 };
 ```
 
-In this example above, we're accessing the `temp` database of MySQL via `localhost` with the models defined in directory `app/model`. For more information, please refer to [Setup Leoric in Egg](https://leoric.js.org/setup/egg).
+在上面这个例子中，我们将数据模型定义文件放在 `app/model` 目录，通过 `localhost` 访问 MySQL 中的 `temp` 数据库。推荐阅读 [在 Egg 中使用 Leoric](https://leoric.js.org/setup/egg)一文了解更多有关在 Egg 中使用 egg-orm 和 Leoric 的信息。
 
-## License
+## 授权许可
 
 [MIT](LICENSE)
