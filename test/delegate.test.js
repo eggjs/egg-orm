@@ -49,7 +49,6 @@ describe('test/delegate.test.js', () => {
       const user2 = new ctx.orm.User({
         nickname: 'bar nickname',
       });
-      console.log(user2.toObject());
       assert(user2.nickname === 'bar nickname');
     });
 
@@ -69,30 +68,34 @@ describe('test/delegate.test.js', () => {
       assert.notEqual(ctx.orm, ctx2.orm);
       assert.notEqual(ctx.orm.User, ctx2.orm.User);
     });
+  });
 
-    describe('GET /users/:id, POST /users', () => {
-      it('should create and get user successfully', async () => {
-        const res = await app.httpRequest()
-          .post('/users')
-          .send({
-            nickname: 'rose',
-            email: 'rose@example.com',
-          });
-        assert(res.status === 200);
-        assert(res.body.id);
-        assert(res.body.nickname === 'rose');
-        assert(res.body.email === 'rose@example.com');
-        assert(res.body.createdAt);
+  describe('GET /users/:id, POST /users', () => {
+    beforeEach(async function() {
+      await app.orm.User.truncate();
+    });
 
-        const res2 = await app.httpRequest()
-          .get(`/users/${res.body.id}`)
-          .send({
-            nickname: 'rose',
-            email: 'rose@example.com',
-          });
-        assert(res2.status === 200);
-        assert.deepEqual(res2.body, res.body);
-      });
+    it('should create and get user successfully', async () => {
+      const res = await app.httpRequest()
+        .post('/users')
+        .send({
+          nickname: 'rose',
+          email: 'rose@example.com',
+        });
+      assert(res.status === 200);
+      assert(res.body.id);
+      assert(res.body.nickname === 'rose');
+      assert(res.body.email === 'rose@example.com');
+      assert(res.body.createdAt);
+
+      const res2 = await app.httpRequest()
+        .get(`/users/${res.body.id}`)
+        .send({
+          nickname: 'rose',
+          email: 'rose@example.com',
+        });
+      assert(res2.status === 200);
+      assert.deepEqual(res2.body, res.body);
     });
   });
 });
