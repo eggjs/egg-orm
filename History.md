@@ -1,8 +1,14 @@
+1.1.4 / 2021-06-25
+==================
+
+**fixes**
+  * [#12](https://github.com/eggjs/egg-orm/pull/12) - fix: allow models be extended from Bone directly to make codebases that use v0.4.x a bit easier to upgrade (Chen Yangjian <<252317+cyjake@users.noreply.github.com>>)
+
 1.1.3 / 2021-06-16
 ==================
 
 **fixes**
-  * [#9](https://github.com/eggjs/egg-orm/pull/9) - fix: ctx.model.ctx injection
+  * [#9](https://github.com/eggjs/egg-orm/pull/9) - fix: ctx.model.ctx injection (Chen Yangjian <<252317+cyjake@users.noreply.github.com>>)
 
 1.1.2 / 2021-03-04
 ==================
