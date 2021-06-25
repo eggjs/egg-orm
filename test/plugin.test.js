@@ -47,7 +47,6 @@ describe('test/plugin.test.js', () => {
       const user2 = new ctx.model.User({
         nickname: 'bar nickname',
       });
-      console.log(user2.toObject());
       assert(user2.nickname === 'bar nickname');
     });
 
@@ -81,7 +80,6 @@ describe('test/plugin.test.js', () => {
       const post2 = new ctx.model.Post({
         description: 'bar nickname',
       });
-      console.log(post2.toObject());
       assert(post2.description === 'bar nickname');
     });
 
@@ -101,30 +99,34 @@ describe('test/plugin.test.js', () => {
       assert.notEqual(ctx.model, ctx2.model);
       assert.notEqual(ctx.model.User, ctx2.model.User);
     });
+  });
 
-    describe('GET /users/:id, POST /users', () => {
-      it('should create and get user successfully', async () => {
-        const res = await app.httpRequest()
-          .post('/users')
-          .send({
-            nickname: 'jack',
-            email: 'jack@example.com',
-          });
-        assert(res.status === 200);
-        assert(res.body.id);
-        assert(res.body.nickname === 'jack');
-        assert(res.body.email === 'jack@example.com');
-        assert(res.body.createdAt);
+  describe('GET /users/:id, POST /users', () => {
+    beforeEach(async function() {
+      await app.model.User.truncate();
+    });
 
-        const res2 = await app.httpRequest()
-          .get(`/users/${res.body.id}`)
-          .send({
-            nickname: 'jack',
-            email: 'jack@example.com',
-          });
-        assert(res2.status === 200);
-        assert.deepEqual(res2.body, res.body);
-      });
+    it('should create and get user successfully', async () => {
+      const res = await app.httpRequest()
+        .post('/users')
+        .send({
+          nickname: 'jack',
+          email: 'jack@example.com',
+        });
+      assert(res.status === 200);
+      assert(res.body.id);
+      assert(res.body.nickname === 'jack');
+      assert(res.body.email === 'jack@example.com');
+      assert(res.body.createdAt);
+
+      const res2 = await app.httpRequest()
+        .get(`/users/${res.body.id}`)
+        .send({
+          nickname: 'jack',
+          email: 'jack@example.com',
+        });
+      assert(res2.status === 200);
+      assert.deepEqual(res2.body, res.body);
     });
   });
 });
