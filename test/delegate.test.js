@@ -18,6 +18,12 @@ describe('test/delegate.test.js', () => {
   describe('app.orm', () => {
     it('should be accessible via app.orm', () => {
       assert(app.orm);
+      assert(app.orm.User);
+    });
+
+    it('should be able to access app from model', async function() {
+      assert(app.orm.User.app);
+      assert((new app.orm.User()).app);
     });
   });
 
