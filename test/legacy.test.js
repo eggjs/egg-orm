@@ -20,6 +20,11 @@ describe('test/legacy.test.js', () => {
       assert(app.model);
       assert(app.model.User);
     });
+
+    it('should be able to access app from model', async function() {
+      assert(app.model.User.app);
+      assert((new app.model.User()).app);
+    });
   });
 
   describe('GET /users/:id, POST /users', () => {

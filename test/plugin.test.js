@@ -18,6 +18,12 @@ describe('test/plugin.test.js', () => {
   describe('app.model', () => {
     it('should be accessible via app.model', () => {
       assert(app.model);
+      assert(app.model.User);
+    });
+
+    it('should be able to access app from model', async function() {
+      assert(app.model.User.app);
+      assert((new app.model.User()).app);
     });
   });
 
@@ -118,6 +124,10 @@ describe('test/plugin.test.js', () => {
       assert(res.body.nickname === 'jack');
       assert(res.body.email === 'jack@example.com');
       assert(res.body.createdAt);
+
+      // should not interfere JSON dump
+      assert(res.body.hasOwnProperty('ctx') === false);
+      assert(res.body.hasOwnProperty('app') === false);
 
       const res2 = await app.httpRequest()
         .get(`/users/${res.body.id}`)
