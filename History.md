@@ -1,3 +1,9 @@
+1.1.5 / 2021-07-01
+==================
+
+**fixes**
+  * [#13](https://github.com/eggjs/egg-orm/pull/13) - fix: support Model.app and model.app (Chen Yangjian <<252317+cyjake@users.noreply.github.com>>)
+
 1.1.4 / 2021-06-25
 ==================
 
