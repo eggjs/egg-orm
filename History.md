@@ -1,3 +1,9 @@
+1.1.6 / 2021-07-06
+==================
+
+**fixes**
+  * [#14](https://github.com/eggjs/egg-orm/pull/14) - fix: ignore properties injected by egg loader (Chen Yangjian <<252317+cyjake@users.noreply.github.com>>)
+
 1.1.5 / 2021-07-01
 ==================
 
