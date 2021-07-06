@@ -124,6 +124,9 @@ describe('test/plugin.test.js', () => {
       assert(res.body.nickname === 'jack');
       assert(res.body.email === 'jack@example.com');
       assert(res.body.createdAt);
+      // should ignore properties injected by egg loader
+      assert(res.body.fullPath == null);
+      assert(res.body.pathName == null);
 
       // should not interfere JSON dump
       assert(res.body.hasOwnProperty('ctx') === false);
