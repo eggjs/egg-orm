@@ -1,3 +1,9 @@
+1.1.7 / 2021-07-09
+==================
+
+**fixes**
+  * [#15](https://github.com/eggjs/egg-orm/pull/15) - fix: `Model.name` should be consistent (Chen Yangjian <<252317+cyjake@users.noreply.github.com>>)
+
 1.1.6 / 2021-07-06
 ==================
 
