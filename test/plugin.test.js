@@ -44,6 +44,10 @@ describe('test/plugin.test.js', () => {
       const ctxModel = ctx.model;
       assert(ctx.model === ctxModel);
       assert(ctx.model.User.ctx === ctx);
+      assert((new ctx.model.User()).ctx === ctx);
+      assert(ctx.model.User.app);
+      assert((new ctx.model.User()).app);
+      assert(ctx.model.User.name === 'User');
 
       const user = ctx.model.User.build({
         nickname: 'foo nickname',
