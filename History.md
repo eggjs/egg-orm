@@ -1,3 +1,12 @@
+2.0.0 / 2022-01-06
+==================
+
+## What's Changed
+* upgrade: leoric v2.x by @cyjake in https://github.com/eggjs/egg-orm/pull/16
+
+
+**Full Changelog**: https://github.com/eggjs/egg-orm/compare/v1.1.7...v2.0.0
+
 1.1.7 / 2021-07-09
 ==================
 
