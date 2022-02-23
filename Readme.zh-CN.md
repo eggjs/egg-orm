@@ -67,7 +67,7 @@ exports.orm = {
   client: 'mysql',
   database: 'temp',
   host: 'localhost',
-  baseDir: 'app/model',
+  baseDir: 'model',
 };
 ```
 
