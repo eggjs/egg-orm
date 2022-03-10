@@ -14,14 +14,16 @@
     "model"
   ],
   "main": "lib/loader.js",
+  "types": "types/index.d.ts",
   "files": [
     "config",
     "lib",
+    "types",
     "app.js",
     "agent.js"
   ],
   "scripts": {
-    "pretest": "./test/prepare.sh",
+    "pretest": "tsc && ./test/prepare.sh",
     "test": "DEBUG=leoric egg-bin test --full-trace",
     "test-local": "DEBUG=leoric egg-bin test --full-trace",
     "coveralls": "egg-bin cov"
@@ -29,16 +31,18 @@
   "author": "Chen Yangjian <yicai.cyj@alibaba-inc.com>",
   "license": "MIT",
   "dependencies": {
-    "leoric": "^2.0.0"
+    "leoric": "^2.3.0"
   },
   "devDependencies": {
+    "@types/mocha": "^9.1.0",
     "egg": "^2.25.0",
     "egg-bin": "^4.14.0",
     "egg-mock": "^3.24.2",
     "eslint": "^6.6.0",
     "eslint-config-egg": "^7.5.1",
     "mysql": "^2.17.1",
-    "mysql2": "^2.0.0"
+    "mysql2": "^2.0.0",
+    "typescript": "^4.6.2"
   },
   "engines": {
     "node": ">= 10.0.0"

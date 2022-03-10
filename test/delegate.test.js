@@ -2,13 +2,14 @@
 
 const assert = require('assert').strict;
 const mm = require('egg-mock');
+const path = require('path');
 
 describe('test/delegate.test.js', () => {
   let app;
 
   before(() => {
     app = mm.app({
-      baseDir: 'apps/delegate',
+      baseDir: path.join(__dirname, '../examples/delegate'),
     });
     return app.ready();
   });
