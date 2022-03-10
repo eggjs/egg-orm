@@ -1,4 +1,9 @@
-import Realm, { DataTypes, Bone, ConnectOptions } from 'leoric';
+import Realm, {
+  Bone,
+  DataTypes,
+  Column, HasMany, HasOne, BelongsTo,
+  ConnectOptions,
+} from 'leoric';
 
 interface EggOrmOptions extends ConnectOptions {
   delegate?: string;
@@ -15,6 +20,10 @@ interface DataSources {
 
 declare module 'egg' {
   class IModel extends Realm {
+    Column: typeof Column;
+    HasMany: typeof HasMany;
+    HasOne: typeof HasOne;
+    BelongsTo: typeof BelongsTo;
     DataTypes: typeof DataTypes;
     Model: typeof Bone;
   }

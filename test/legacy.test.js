@@ -2,13 +2,14 @@
 
 const assert = require('assert').strict;
 const mm = require('egg-mock');
+const path = require('path');
 
 describe('test/legacy.test.js', () => {
   let app;
 
   before(() => {
     app = mm.app({
-      baseDir: 'apps/legacy',
+      baseDir: path.join(__dirname, '../examples/legacy'),
     });
     return app.ready();
   });

@@ -1,15 +1,13 @@
-'use strict';
+import { strict as assert } from 'assert';
+import mm from 'egg-mock';
+import path from 'path';
 
-const assert = require('assert').strict;
-const mm = require('egg-mock');
-const path = require('path');
-
-describe('test/plugin.test.js', () => {
+describe('test/types/plugin.test.ts', () => {
   let app;
 
   before(() => {
     app = mm.app({
-      baseDir: path.join(__dirname, '../examples/basic'),
+      baseDir: path.join(__dirname, '../../examples/typescript'),
     });
     return app.ready();
   });
