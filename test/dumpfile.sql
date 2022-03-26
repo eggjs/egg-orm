@@ -12,5 +12,6 @@ CREATE TABLE `posts` (
   `id` bigint(20) AUTO_INCREMENT PRIMARY KEY,
   `gmt_create` datetime(6) NOT NULL,
   `content` TEXT,
-  `description` varchar(256) NOT NULL
+  `description` varchar(256) NOT NULL,
+  `user_id` bigint(20)
 );

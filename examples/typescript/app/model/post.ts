@@ -1,7 +1,8 @@
 import { Application } from "egg";
+import UserFactory from './user';
 
 export default function(app: Application) {
-  const { Bone, Column, DataTypes: { BIGINT, TEXT, STRING } } = app.model;
+  const { Bone, BelongsTo, Column, DataTypes: { BIGINT, TEXT, STRING } } = app.model;
 
   class Post extends Bone {
     @Column({ autoIncrement: true })
@@ -12,6 +13,12 @@ export default function(app: Application) {
 
     @Column()
     description: string;
+
+    @Column()
+    userId: bigint;
+
+    @BelongsTo()
+    user: ReturnType<typeof UserFactory>;
   }
 
   return Post;
