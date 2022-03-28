@@ -1,4 +1,5 @@
 import { Application } from "egg";
+import { strict as assert } from "assert";
 
 export default function(app: Application) {
   return class UsersController extends app.Controller {

@@ -1,15 +1,14 @@
 'use strict';
 
-module.exports = (app, Model) => {
-  // const { STRING } = Model;
+module.exports = (app) => {
+  const { Bone, DataTypes: { STRING, DATE } } = app.model;
 
-  class User extends Model {
-    // static get schema() {
-    //   return {
-    //     nickname: { type: STRING, allowNull: false },
-    //     email: { type: STRING, allowNull: true },
-    //   };
-    // }
+  class User extends Bone {
+    static attributes = {
+      nickname: { type: STRING, allowNull: false },
+      email: { type: STRING, allowNull: true },
+      createdAt: { type: DATE },
+    }
   }
 
   return User;
