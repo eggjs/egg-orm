@@ -28,7 +28,10 @@
     "test-local": "DEBUG=leoric egg-bin test --full-trace",
     "coveralls": "egg-bin cov"
   },
-  "author": "Chen Yangjian <yicai.cyj@alibaba-inc.com>",
+  "maintainers": [
+    "cyjake (http://cyj.me)",
+    "jimmydaddy <heyjimmygo@gmail.com>"
+  ],
   "license": "MIT",
   "dependencies": {
     "leoric": "^2.3.0"
