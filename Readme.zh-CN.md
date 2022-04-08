@@ -1,6 +1,6 @@
 # egg-orm
 
-egg-orm 是一个适用于 Egg 框架的数据模型层插件，egg-orm 的对象关系映射能力来自 [Leoric](https://leoric.js.org)。
+egg-orm 是一个适用于 Egg 框架的数据模型层插件，支持 JavaScript 和 TypeScript，基于 [Leoric](https://leoric.js.org/zh) 对象关系映射，可以通过 [examples 中的示例项目](https://github.com/eggjs/egg-orm/tree/master/examples) 来快速了解如何在 Egg 应用中配置和使用 egg-orm 插件。
 
 ## 安装
 
@@ -20,15 +20,49 @@ $ npm install --save sqlite3  # SQLite
 ```js
 // app/model/user.js
 module.exports = function(app) {
-  const { STRING } = app.model.DataTypes;
+  const { Bone, DataTypes: { STRING } } = app.model;
 
-  return app.model.define('User', {
-    name: STRING,
-    password: STRING,
-    avatar: STRING(2048),
-  }, {
-    tableName: 'users',
+  return class User extends Bone {
+    static table = 'users'
+
+    static attributes = {
+      name: STRING,
+      password: STRING,
+      avatar: STRING(2048),
+    }
   });
+}
+```
+
+也支持试用 TypeScript 编写：
+
+```ts
+// app/model/book.ts
+import { Application } from 'egg';
+import UserFactory from './user';
+
+export default = function(app) {
+  const { Bone, Column, BelongsTo, DataTypes: { STRING, TEXT, DATE } } = app.model;
+
+  return class Book extends Bone {
+    @Column({ primaryKey: true })
+    id: bigint;
+
+    @Column()
+    name: string;
+
+    @Column(TEXT)
+    description: string;
+
+    @Column()
+    createdAt: Date;
+
+    @Column()
+    updatedAt: Date;
+
+    @BelongsTo()
+    user: ReturnType<UserFactory>;
+  }
 }
 ```
 
@@ -71,7 +105,37 @@ exports.orm = {
 };
 ```
 
-在上面这个例子中，我们将数据模型定义文件放在 `app/model` 目录，通过 `localhost` 访问 MySQL 中的 `temp` 数据库。推荐阅读 [在 Egg 中使用 Leoric](https://leoric.js.org/setup/egg)一文了解更多有关在 Egg 中使用 egg-orm 和 Leoric 的信息。
+在上面这个例子中，我们将数据模型定义文件放在 `app/model` 目录，通过 `localhost` 访问 MySQL 中的 `temp` 数据库。推荐阅读 [Egg 应用配置指南](https://leoric.js.org/zh/setup/egg)一文了解更多有关在 Egg 中使用 egg-orm 的帮助文档。
+
+## 迁移任务
+
+egg-orm 支持两种在开发模式维护表结构的方式：
+
+- 类似 Django 的数据模型层，基于模型属性定义自动同步到数据库 `app.model.sync()`
+- 类似 Ruby on Rails 的 Active Record，使用迁移任务手动管理表结构
+
+前者比较简单，可以直接在 Egg 应用的 app.js 在 didReady 阶段执行即可：
+
+```js
+// app.js
+module.exports = class AppBootHook {
+  async didLoad() {
+    const { app } = this;
+    if (app.config.env === 'local') {
+      // ⚠️ 此操作可能导致数据丢失，请务必谨慎使用
+      await app.model.sync({ alter: true });
+    }
+  }
+}
+```
+
+因为 `app.model.sync()` 的风险性，使用迁移任务来管理表结构是更为稳妥的方式，在多人协作时也更加方便。目前 egg-orm 还没有提供命令封装，可以调用如下 API 来使用迁移任务：
+
+- 创建迁移任务 `app.model.createMigrationFile()`
+- 执行迁移任务 `app.model.migrate(step)`
+- 回滚迁移任务 `app.model.rollback(step)`
+
+详细的使用说明可以参考《[迁移任务](https://leoric.js.org/zh/migrations.html)》帮助文档。
 
 ## 授权许可
 

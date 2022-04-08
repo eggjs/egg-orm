@@ -17,20 +17,54 @@ $ npm install --save sqlite3  # SQLite
 
 ## Usage
 
-With egg-orm you can define models in `app/model`:
+With egg-orm you can define models in `app/model` in JavaScript:
 
 ```js
 // app/model/user.js
 module.exports = function(app) {
-  const { STRING } = app.model.DataTypes;
+  const { Bone, DataTypes: { STRING } } = app.model;
 
-  return app.model.define('User', {
-    name: STRING,
-    password: STRING,
-    avatar: STRING(2048),
-  }, {
-    tableName: 'users',
+  return class User extends Bone {
+    static table = 'users'
+
+    static attributes = {
+      name: STRING,
+      password: STRING,
+      avatar: STRING(2048),
+    }
   });
+}
+```
+
+or in TypeScript:
+
+```ts
+// app/model/book.ts
+import { Application } from 'egg';
+import UserFactory from './user';
+
+export default = function(app) {
+  const { Bone, Column, BelongsTo, DataTypes: { STRING, TEXT, DATE } } = app.model;
+
+  return class Book extends Bone {
+    @Column({ primaryKey: true })
+    id: bigint;
+
+    @Column()
+    name: string;
+
+    @Column(TEXT)
+    description: string;
+
+    @Column()
+    createdAt: Date;
+
+    @Column()
+    updatedAt: Date;
+
+    @BelongsTo()
+    user: ReturnType<UserFactory>;
+  }
 }
 ```
 
