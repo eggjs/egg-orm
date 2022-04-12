@@ -119,7 +119,7 @@ egg-orm 支持两种在开发模式维护表结构的方式：
 ```js
 // app.js
 module.exports = class AppBootHook {
-  async didLoad() {
+  async didReady() {
     const { app } = this;
     if (app.config.env === 'local') {
       // ⚠️ 此操作可能导致数据丢失，请务必谨慎使用
