@@ -1,25 +1,19 @@
-import { Application } from "egg";
-import UserFactory from './user';
+import { Column, Bone, BelongsTo, DataTypes } from 'leoric';
+import User from './user';
 
-export default function(app: Application) {
-  const { Bone, BelongsTo, Column, DataTypes: { BIGINT, TEXT, STRING } } = app.model;
+export default class Post extends Bone {
+  @Column({ autoIncrement: true })
+  id: bigint;
 
-  class Post extends Bone {
-    @Column({ autoIncrement: true })
-    id: bigint;
+  @Column(DataTypes.TEXT)
+  content: string;
 
-    @Column(TEXT)
-    content: string;
+  @Column()
+  description: string;
 
-    @Column()
-    description: string;
+  @Column()
+  userId: bigint;
 
-    @Column()
-    userId: bigint;
-
-    @BelongsTo()
-    user: ReturnType<typeof UserFactory>;
-  }
-
-  return Post;
-};
+  @BelongsTo()
+  user: User;
+}

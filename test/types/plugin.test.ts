@@ -26,6 +26,21 @@ describe('test/types/plugin.test.ts', () => {
     });
   });
 
+  describe('models', () => {
+    it('should be accessible via app.model[name]', () => {
+      assert.ok(app.model.User.models);
+      assert.ok(app.model.User.models.User);
+      assert.ok(app.model.User.models.Post);
+    });
+
+    it('should be accessible via ctx.model[name]', () => {
+      const ctx = app.mockContext();
+      assert.ok(ctx.model.User.models);
+      assert.ok(ctx.model.User.models.User);
+      assert.ok(ctx.model.User.models.Post);
+    });
+  });
+
   describe('ctx.model', () => {
     let ctx;
 

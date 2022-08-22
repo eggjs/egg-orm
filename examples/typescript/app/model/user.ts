@@ -1,22 +1,16 @@
-import { Application } from 'egg';
-import PostFactory from './post';
+import { Column, Bone, HasMany } from 'leoric';
+import Post from './post';
 
-export default function(app: Application) {
-  const { Bone, Column, HasMany, DataTypes: { STRING } } = app.model;
+export default class User extends Bone {
+  @Column({ allowNull: false })
+  nickname: string;
 
-  class User extends Bone {
-    @Column({ allowNull: false })
-    nickname: string;
+  @Column()
+  email: string;
 
-    @Column()
-    email: string;
+  @Column()
+  createdAt: Date;
 
-    @Column()
-    createdAt: Date;
-
-    @HasMany()
-    posts: ReturnType<typeof PostFactory>[];
-  }
-
-  return User;
-};
+  @HasMany()
+  posts: Post[];
+}
