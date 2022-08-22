@@ -1,9 +1,9 @@
-import PostFactory from '../app/model/post';
-import UserFactory from '../app/model/user';
+import Post from '../app/model/post';
+import User from '../app/model/user';
 
 declare module 'egg' {
   interface IModel {
-    Post: ReturnType<typeof PostFactory>;
-    User: ReturnType<typeof UserFactory>;
+    Post: typeof Post;
+    User: typeof User;
   }
 }
