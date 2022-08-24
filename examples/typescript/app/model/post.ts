@@ -2,7 +2,7 @@ import { Column, Bone, BelongsTo, DataTypes } from 'leoric';
 import User from './user';
 
 export default class Post extends Bone {
-  @Column({ autoIncrement: true })
+  @Column({ primaryKey: true })
   id: bigint;
 
   @Column(DataTypes.TEXT)
