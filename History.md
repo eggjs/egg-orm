@@ -1,3 +1,20 @@
+2.1.0 / 2022-08-24
+==================
+
+## What's Changed
+* feat: add index.d.ts by @luckydrq in https://github.com/eggjs/egg-orm/pull/17
+* test: declaration types integration test by @cyjake in https://github.com/eggjs/egg-orm/pull/18
+* chore: elaborate example apps by @cyjake in https://github.com/eggjs/egg-orm/pull/19
+* docs: zh readme refabrication by @cyjake in https://github.com/eggjs/egg-orm/pull/20
+* fix: readme by @leoner in https://github.com/eggjs/egg-orm/pull/21
+* feat: support ts and class model definition by @JimmyDaddy in https://github.com/eggjs/egg-orm/pull/22
+
+## New Contributors
+* @luckydrq made their first contribution in https://github.com/eggjs/egg-orm/pull/17
+* @leoner made their first contribution in https://github.com/eggjs/egg-orm/pull/21
+
+**Full Changelog**: https://github.com/eggjs/egg-orm/compare/v2.0.0...v2.1.0
+
 2.0.0 / 2022-01-06
 ==================
 
