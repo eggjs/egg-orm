@@ -39,33 +39,45 @@ module.exports = function(app) {
 or in TypeScript:
 
 ```ts
-// app/model/book.ts
-import { Application } from 'egg';
-import UserFactory from './user';
+// app/model/post.ts
+import { Column, Bone, BelongsTo, DataTypes } from 'leoric';
+import User from './user';
 
-export default = function(app) {
-  const { Bone, Column, BelongsTo, DataTypes: { STRING, TEXT, DATE } } = app.model;
+export default class Post extends Bone {
+  @Column({ primaryKey: true })
+  id: bigint;
 
-  return class Book extends Bone {
-    @Column({ primaryKey: true })
-    id: bigint;
+  @Column(DataTypes.TEXT)
+  content: string;
 
-    @Column()
-    name: string;
+  @Column()
+  description: string;
 
-    @Column(TEXT)
-    description: string;
+  @Column()
+  userId: bigint;
 
-    @Column()
-    createdAt: Date;
-
-    @Column()
-    updatedAt: Date;
-
-    @BelongsTo()
-    user: ReturnType<UserFactory>;
-  }
+  @BelongsTo()
+  user: User;
 }
+
+// app/model/user.ts
+import { Column, Bone, HasMany } from 'leoric';
+import Post from './post';
+
+export default class User extends Bone {
+  @Column({ allowNull: false })
+  nickname: string;
+
+  @Column()
+  email: string;
+
+  @Column()
+  createdAt: Date;
+
+  @HasMany()
+  posts: Post[];
+}
+
 ```
 
 and use them like below:
