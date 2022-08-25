@@ -1,5 +1,5 @@
 'use strict';
 
-const { Bone } = require('leoric');
+const { Bone } = require('../../../../');
 
 module.exports = class User extends Bone {};

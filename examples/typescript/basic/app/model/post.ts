@@ -1,4 +1,4 @@
-import { Column, Bone, BelongsTo, DataTypes } from 'leoric';
+import { Column, Bone, BelongsTo, DataTypes } from '../../../../../';
 import User from './user';
 
 export default class Post extends Bone {

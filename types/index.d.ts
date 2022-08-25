@@ -5,6 +5,8 @@ import Realm, {
   ConnectOptions,
 } from 'leoric';
 
+export * from 'leoric';
+
 interface EggOrmOptions extends ConnectOptions {
   delegate?: string;
   migrations?: string;
