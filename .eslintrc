@@ -1,4 +1,14 @@
 {
   "extends": "eslint-config-egg",
-  "parser": "@babel/eslint-parser"
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false
+  },
+  "overrides": [{
+    "files": ["**/*.ts"],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "sourceType": "module"
+    }
+  }]
 }

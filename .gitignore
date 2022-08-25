@@ -3,3 +3,8 @@ node_modules
 run
 .vscode
 package-lock.json
+
+test/typescript/**/*.js
+test/typescript/**/*.js.map
+examples/typescript/**/*.js
+examples/typescript/**/*.js.map
