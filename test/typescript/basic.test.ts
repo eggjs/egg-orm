@@ -28,7 +28,6 @@ describe('test/typesript/basic/plugin.test.ts', () => {
 
   describe('models', () => {
     it('should be accessible via app.model[name]', () => {
-      console.log(app.model.User);
       assert.ok(app.model.User.models);
       assert.ok(app.model.User.models.User);
       assert.ok(app.model.User.models.Post);
