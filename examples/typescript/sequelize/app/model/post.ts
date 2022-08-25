@@ -9,7 +9,9 @@ export default class Post extends Bone {
   content: string;
 
   @Column()
-  description: string;
+  get description(): string {
+    return (this.attribute('description') as string) || 'defaultDesc';
+  }
 
   @Column()
   userId: bigint;

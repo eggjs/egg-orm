@@ -2,12 +2,12 @@ import { strict as assert } from 'assert';
 import mm from 'egg-mock';
 import path from 'path';
 
-describe('test/types/plugin.test.ts', () => {
+describe('test/types/sequelize/plugin.test.ts', () => {
   let app;
 
   before(() => {
     app = mm.app({
-      baseDir: path.join(__dirname, '../../examples/typescript'),
+      baseDir: path.join(__dirname, '../../../examples/typescript/sequelize'),
     });
     return app.ready();
   });
@@ -83,6 +83,12 @@ describe('test/types/plugin.test.ts', () => {
       // subclass
       assert.ok(ContextUser.prototype instanceof User);
       assert.equal(ContextUser.ctx, ctx);
+
+      const { Post } = app.model;
+      const p = new Post();
+      assert.equal(p.description, 'defaultDesc');
+      const p1 = new ctx.model.User.models.Post();
+      assert.equal(p1.description, 'defaultDesc');
     });
 
     it('should be accessible via ctx.model by define', () => {
