@@ -2,12 +2,12 @@ import { strict as assert } from 'assert';
 import mm from 'egg-mock';
 import path from 'path';
 
-describe('test/types/sequelize/plugin.test.ts', () => {
+describe('test/typesript/basic/plugin.test.ts', () => {
   let app;
 
   before(() => {
     app = mm.app({
-      baseDir: path.join(__dirname, '../../../examples/typescript/sequelize'),
+      baseDir: path.join(__dirname, '../../examples/typescript/basic'),
     });
     return app.ready();
   });
@@ -28,6 +28,7 @@ describe('test/types/sequelize/plugin.test.ts', () => {
 
   describe('models', () => {
     it('should be accessible via app.model[name]', () => {
+      console.log(app.model.User);
       assert.ok(app.model.User.models);
       assert.ok(app.model.User.models.User);
       assert.ok(app.model.User.models.Post);
@@ -63,7 +64,7 @@ describe('test/types/sequelize/plugin.test.ts', () => {
       assert((new ctx.model.User()).app);
       assert(ctx.model.User.name === 'User');
 
-      const user = ctx.model.User.build({
+      const user = new ctx.model.User({
         nickname: 'foo nickname',
       });
       assert(user.nickname === 'foo nickname');
@@ -102,7 +103,7 @@ describe('test/types/sequelize/plugin.test.ts', () => {
       assert(ctx.model === ctxModel);
       assert(ctx.model.Post.ctx === ctx);
 
-      const post = ctx.model.Post.build({
+      const post = new ctx.model.Post({
         description: 'foo nickname',
       });
       assert(post.description === 'foo nickname');
