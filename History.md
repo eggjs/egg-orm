@@ -1,3 +1,14 @@
+2.1.1 / 2022-08-25
+==================
+
+## What's Changed
+* docs: ts guide doc by @JimmyDaddy in https://github.com/eggjs/egg-orm/pull/23
+* fix: override model.app or model.prototype.app event if exists by @cyjake in https://github.com/eggjs/egg-orm/pull/24
+* fix:  sequelize adapter with model extends from Bone directly and export leoric form egg-orm by @JimmyDaddy in https://github.com/eggjs/egg-orm/pull/26
+
+
+**Full Changelog**: https://github.com/eggjs/egg-orm/compare/v2.1.0...v2.1.1
+
 2.1.0 / 2022-08-24
 ==================
 
