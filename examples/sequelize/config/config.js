@@ -1,12 +1,9 @@
 'use strict';
 
-const { Bone } = require('leoric');
-
 exports.orm = {
   database: 'egg-orm',
+  sequelize: true,
   port: process.env.MYSQL_PORT,
-  // connect to Bone directly
-  Bone,
 };
 
 exports.keys = 'hello';

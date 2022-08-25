@@ -1,8 +1,10 @@
-'use strict';
+import { Application } from "egg";
 
-module.exports = app => {
+export default function(app: Application) {
   return class UsersController extends app.Controller {
     async show() {
+      // TODO: sequelize adapter methods like findByPk() isn't provided by leoric yet
+      // const user = await this.ctx.model.User.findByPk(this.ctx.params.id);
       const user = await this.ctx.model.User.findOne(this.ctx.params.id);
       this.ctx.body = user;
     }

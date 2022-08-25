@@ -1,15 +1,13 @@
-'use strict';
+import { strict as assert } from 'assert';
+import mm from 'egg-mock';
+import path from 'path';
 
-const assert = require('assert').strict;
-const mm = require('egg-mock');
-const path = require('path');
-
-describe('test/plugin.test.js', () => {
+describe('test/typescript/sequelize/plugin.test.ts', () => {
   let app;
 
   before(() => {
     app = mm.app({
-      baseDir: path.join(__dirname, '../examples/basic'),
+      baseDir: path.join(__dirname, '../../examples/typescript/sequelize'),
     });
     return app.ready();
   });
@@ -25,6 +23,27 @@ describe('test/plugin.test.js', () => {
     it('should be able to access app from model', async function() {
       assert(app.model.User.app);
       assert((new app.model.User()).app);
+    });
+  });
+
+  describe('models', () => {
+    it('should be accessible via app.model[name]', () => {
+      assert.ok(app.model.User.models);
+      assert.ok(app.model.User.models.User);
+      assert.ok(app.model.User.models.Post);
+    });
+
+    it('should be accessible via ctx.model[name]', () => {
+      const ctx = app.mockContext();
+      assert.ok(ctx.model.User.models);
+      assert.ok(ctx.model.User.models.User);
+      assert.ok(ctx.model.User.models.Post);
+    });
+  });
+
+  describe('sequelize', () => {
+    it('should extend Bone with sequelize methods', () => {
+      assert.equal(typeof app.model.User.findAll, 'function');
     });
   });
 
@@ -70,6 +89,12 @@ describe('test/plugin.test.js', () => {
       // subclass
       assert.ok(ContextUser.prototype instanceof User);
       assert.equal(ContextUser.ctx, ctx);
+
+      const { Post } = app.model;
+      const p = new Post();
+      assert.equal(p.description, 'defaultDesc');
+      const p1 = new ctx.model.User.models.Post();
+      assert.equal(p1.description, 'defaultDesc');
     });
 
     it('should be accessible via ctx.model by define', () => {

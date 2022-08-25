@@ -13,7 +13,7 @@
     "orm",
     "model"
   ],
-  "main": "lib/loader.js",
+  "main": "index.js",
   "types": "types/index.d.ts",
   "files": [
     "config",
@@ -34,7 +34,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "leoric": "^2.7.2"
+    "leoric": "^2.7.3"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.17.0",
