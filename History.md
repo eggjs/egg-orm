@@ -1,3 +1,11 @@
+2.1.2 / 2022-08-31
+==================
+
+## What's Changed
+* chore: sequelizeBone export app/ctx, doc and example complete by @JimmyDaddy in https://github.com/eggjs/egg-orm/pull/27
+
+**Full Changelog**: https://github.com/eggjs/egg-orm/compare/v2.1.1...v2.1.2
+
 2.1.1 / 2022-08-25
 ==================
 
