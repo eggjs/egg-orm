@@ -1,3 +1,4 @@
 {
-  "name": "egg-orm-typescript-sequelize"
+  "name": "egg-orm-typescript-sequelize",
+  "types": "types/index.d.ts"
 }

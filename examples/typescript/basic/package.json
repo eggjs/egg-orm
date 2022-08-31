@@ -1,3 +1,4 @@
 {
-  "name": "egg-orm-typescript-standard"
+  "name": "egg-orm-typescript-standard",
+  "types": "types/index.d.ts"
 }

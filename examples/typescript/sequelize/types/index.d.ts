@@ -6,4 +6,13 @@ declare module 'egg' {
     Post: typeof Post;
     User: typeof User;
   }
+
+  interface Application {
+    model: IModel;
+  }
+
+  // extend context
+  interface Context {
+    model: IModel;
+  }
 }

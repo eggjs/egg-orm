@@ -38,7 +38,7 @@ module.exports = function(app) {
 
 ```ts
 // app/model/post.ts
-import { Column, Bone, BelongsTo, DataTypes } from 'leoric';
+import { Column, Bone, BelongsTo, DataTypes } from 'egg-orm';
 import User from './user';
 
 export default class Post extends Bone {
@@ -59,7 +59,7 @@ export default class Post extends Bone {
 }
 
 // app/model/user.ts
-import { Column, Bone, HasMany } from 'leoric';
+import { Column, Bone, HasMany } from 'egg-orm';
 import Post from './post';
 
 export default class User extends Bone {

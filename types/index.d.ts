@@ -1,11 +1,24 @@
+import { Context, Application } from 'egg';
+
 import Realm, {
   Bone,
   DataTypes,
   Column, HasMany, HasOne, BelongsTo,
-  ConnectOptions,
+  ConnectOptions, SequelizeBone,
 } from 'leoric';
 
 export * from 'leoric';
+
+declare class MySequelizeBone extends SequelizeBone {
+  static ctx: Context;
+  static app: Application;
+
+  ctx: Context;
+  app: Application;
+
+}
+
+export { MySequelizeBone as SequelizeBone }
 
 interface EggOrmOptions extends ConnectOptions {
   delegate?: string;
@@ -27,7 +40,7 @@ declare module 'egg' {
     HasOne: typeof HasOne;
     BelongsTo: typeof BelongsTo;
     DataTypes: typeof DataTypes;
-    Model: typeof Bone;
+    Model: typeof Bone | typeof SequelizeBone;
   }
 
   // extend app
