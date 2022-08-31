@@ -9,7 +9,7 @@
     "sourceMap": true
   },
   "include": [
-    "test/typescript",
-    "types"
+    "types",
+    "./"
   ]
 }

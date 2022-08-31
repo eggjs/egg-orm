@@ -153,6 +153,7 @@ describe('test/typescript/sequelize/plugin.test.ts', () => {
       assert(res.body.id);
       assert(res.body.nickname === 'jack');
       assert(res.body.email === 'jack@example.com');
+      assert.equal(res.body.userAppName, `${app.name}jack`);
       assert(res.body.createdAt);
       // should ignore properties injected by egg loader
       assert(res.body.fullPath == null);

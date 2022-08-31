@@ -1,7 +1,7 @@
-import { Column, Bone, BelongsTo, DataTypes } from '../../../../../';
+import { Column, BelongsTo, DataTypes, SequelizeBone } from '../../../../../';
 import User from './user';
 
-export default class Post extends Bone {
+export default class Post extends SequelizeBone {
   @Column({ primaryKey: true })
   id: bigint;
 
