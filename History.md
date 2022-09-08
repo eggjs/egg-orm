@@ -1,3 +1,12 @@
+2.2.0 / 2022-09-08
+==================
+
+## What's Changed
+* feat: support tegg-egg mixing mode by @JimmyDaddy in https://github.com/eggjs/egg-orm/pull/28
+
+
+**Full Changelog**: https://github.com/eggjs/egg-orm/compare/v2.1.2...v2.2.0
+
 2.1.2 / 2022-08-31
 ==================
 
