@@ -166,4 +166,21 @@ describe('test/typesript/basic/plugin.test.ts', () => {
       assert.deepEqual(res2.body, res.body);
     });
   });
+
+  describe('tegg-module-mixing', () => {
+    it('should work', async () => {
+      const ctx = await app.mockModuleContext();
+
+      const user = await ctx.model.User.create({
+        nickname: 'jerry',
+        email: 'jerry@example.com',
+      });
+
+      assert.ok(user);
+
+      const res =  await ctx.module.testModule.helloService.sayHello(user.id);
+
+      assert.equal(res, 'hello jerry');
+    });
+  });
 });

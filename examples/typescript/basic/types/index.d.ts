@@ -1,5 +1,9 @@
+import 'egg';
+
 import Post from '../app/model/post';
 import User from '../app/model/user';
+import HelloService from '../modules/test-module/helloService';
+
 
 declare module 'egg' {
   interface IModel {
@@ -14,5 +18,11 @@ declare module 'egg' {
   // extend context
   interface Context {
     model: IModel;
+  }
+
+  export interface EggModule {
+    hello: {
+      helloService: HelloService;
+    }
   }
 }

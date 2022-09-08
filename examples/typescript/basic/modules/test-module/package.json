@@ -1,0 +1,7 @@
+{
+  "name": "test-module",
+  "description": "test module",
+  "eggModule": {
+    "name": "testModule"
+  }
+}

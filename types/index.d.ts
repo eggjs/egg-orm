@@ -18,7 +18,16 @@ declare class MySequelizeBone extends SequelizeBone {
 
 }
 
-export { MySequelizeBone as SequelizeBone }
+declare class MyBone extends Bone {
+  static ctx: Context;
+  static app: Application;
+
+  ctx: Context;
+  app: Application;
+
+}
+
+export { MySequelizeBone as SequelizeBone, MyBone as Bone }
 
 interface EggOrmOptions extends ConnectOptions {
   delegate?: string;
