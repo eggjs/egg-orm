@@ -45,6 +45,11 @@ describe('test/typescript/sequelize/plugin.test.ts', () => {
     it('should extend Bone with sequelize methods', () => {
       assert.equal(typeof app.model.User.findAll, 'function');
     });
+
+    it('should be able to handle multiple inheritance', async () => {
+      assert.equal(app.model.Comment.shardingKey, 'userId');
+      assert.equal(typeof app.model.Comment.findAll, 'function');
+    });
   });
 
   describe('ctx.model', () => {

@@ -6,6 +6,7 @@ module.exports = function(app) {
     id: { type: BIGINT, autoIncrement: true },
     content: TEXT,
     description: STRING,
+    userId: { type: BIGINT, allowNull: false },
   });
   return Post;
 };
