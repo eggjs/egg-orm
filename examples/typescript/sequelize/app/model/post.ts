@@ -1,9 +1,8 @@
 import { Column, BelongsTo, DataTypes, SequelizeBone } from '../../../../../';
+import Base from './common/base';
 import User from './user';
 
-export default class Post extends SequelizeBone {
-  @Column({ primaryKey: true })
-  id: bigint;
+export default class Post extends Base {
 
   @Column(DataTypes.TEXT)
   content: string;
@@ -14,7 +13,7 @@ export default class Post extends SequelizeBone {
   }
 
   @Column()
-  userId: bigint;
+  user_id: bigint;
 
   @BelongsTo()
   user: User;
