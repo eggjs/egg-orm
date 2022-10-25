@@ -66,6 +66,7 @@ describe('test/typesript/basic/plugin.test.ts', () => {
 
       const user = new ctx.model.User({
         nickname: 'foo nickname',
+        email: 'foo@bar.com',
       });
       // FIXME content should not exist in Post
       assert.ok(!ctx.model.User.attributes['content']);
@@ -108,6 +109,7 @@ describe('test/typesript/basic/plugin.test.ts', () => {
 
       const post = new ctx.model.Post({
         description: 'foo nickname',
+        email: 'foo@bar.com',
       });
       assert(post.description === 'foo nickname');
       // FIXME nickname should not exist in Post

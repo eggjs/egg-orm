@@ -7,10 +7,13 @@ export default class Post extends Base {
   @Column(DataTypes.TEXT)
   content: string;
 
-  @Column()
+  @Column({ defaultValue: 'defaultDesc' })
   get description(): string {
-    return (this.attribute('description') as string) || 'defaultDesc';
+    return this.attribute('description') || 'defaultDesc';
   }
+
+  @Column()
+  created_at: Date;
 
   @Column()
   user_id: bigint;

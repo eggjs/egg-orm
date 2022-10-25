@@ -76,6 +76,7 @@ describe('test/typescript/sequelize/plugin.test.ts', () => {
 
       const user = ctx.model.User.build({
         nickname: 'foo nickname',
+        email: 'foo@bar.com',
       });
       assert(user.nickname === 'foo nickname');
       // FIXME content should not exist in Post
@@ -102,7 +103,6 @@ describe('test/typescript/sequelize/plugin.test.ts', () => {
       const { Post } = app.model;
       const p = new Post({ user_id: 1, nickname: 'yexy' });
       assert.equal(p.description, 'defaultDesc');
-      // FIXME nickname should not exist in Post
       assert.ok(!Post.attributes['nickname']);
       await p.save();
       assert.ok(p.id);
