@@ -59,7 +59,7 @@ describe('test/typescript/sequelize/plugin.test.ts', () => {
       ctx = app.mockContext();
     });
 
-    it('should be accessible via ctx.model by extends', () => {
+    it('should be accessible via ctx.model by extends', async () => {
       assert(ctx.model);
       // access twice to make sure avoiding duplicated model injection
       const User = ctx.model.User;
@@ -78,6 +78,10 @@ describe('test/typescript/sequelize/plugin.test.ts', () => {
         nickname: 'foo nickname',
       });
       assert(user.nickname === 'foo nickname');
+      // FIXME content should not exist in Post
+      assert.ok(!ctx.model.User.attributes['content']);
+      await user.save();
+      assert.ok(user.id);
 
       const user2 = new ctx.model.User({
         nickname: 'bar nickname',
@@ -85,7 +89,7 @@ describe('test/typescript/sequelize/plugin.test.ts', () => {
       assert(user2.nickname === 'bar nickname');
     });
 
-    it('should be able to access loaded models by extends', () => {
+    it('should be able to access loaded models by extends', async () => {
       const { User } = app.model;
       const { User: ContextUser } = ctx.model;
 
@@ -96,8 +100,13 @@ describe('test/typescript/sequelize/plugin.test.ts', () => {
       assert.equal(ContextUser.ctx, ctx);
 
       const { Post } = app.model;
-      const p = new Post();
+      const p = new Post({ user_id: 1, nickname: 'yexy' });
       assert.equal(p.description, 'defaultDesc');
+      // FIXME nickname should not exist in Post
+      assert.ok(!Post.attributes['nickname']);
+      await p.save();
+      assert.ok(p.id);
+      assert.equal(p.user_id, 1);
       const p1 = new ctx.model.User.models.Post();
       assert.equal(p1.description, 'defaultDesc');
     });
@@ -106,7 +115,6 @@ describe('test/typescript/sequelize/plugin.test.ts', () => {
       assert(ctx.model);
       // access twice to make sure avoiding duplicated model injection
       const Post = ctx.model.Post;
-      assert(ctx.model.Post === Post);
       assert(ctx.model.Post === Post);
       assert(ctx.model !== app.model);
       const ctxModel = ctx.model;
@@ -159,7 +167,7 @@ describe('test/typescript/sequelize/plugin.test.ts', () => {
       assert(res.body.nickname === 'jack');
       assert(res.body.email === 'jack@example.com');
       assert.equal(res.body.userAppName, `${app.name}jack`);
-      assert(res.body.createdAt);
+      assert(res.body.created_at);
       // should ignore properties injected by egg loader
       assert(res.body.fullPath == null);
       assert(res.body.pathName == null);

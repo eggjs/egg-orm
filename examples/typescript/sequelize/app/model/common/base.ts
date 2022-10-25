@@ -1,5 +1,7 @@
-import { SequelizeBone } from '../../../../../..';
+import { SequelizeBone, Column, DataTypes } from '../../../../../..';
 
 export default class Base extends SequelizeBone {
-  static shardingKey = 'userId';
+
+  @Column({ primaryKey: true, autoIncrement: true, type: DataTypes.BIGINT })
+  id: number;
 };

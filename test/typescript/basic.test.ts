@@ -6,6 +6,7 @@ describe('test/typesript/basic/plugin.test.ts', () => {
   let app;
 
   before(() => {
+    mm.restore();
     app = mm.app({
       baseDir: path.join(__dirname, '../../examples/typescript/basic'),
     });
@@ -48,7 +49,7 @@ describe('test/typesript/basic/plugin.test.ts', () => {
       ctx = app.mockContext();
     });
 
-    it('should be accessible via ctx.model by extends', () => {
+    it('should be accessible via ctx.model by extends', async () => {
       assert(ctx.model);
       // access twice to make sure avoiding duplicated model injection
       const User = ctx.model.User;
@@ -66,7 +67,10 @@ describe('test/typesript/basic/plugin.test.ts', () => {
       const user = new ctx.model.User({
         nickname: 'foo nickname',
       });
+      // FIXME content should not exist in Post
+      assert.ok(!ctx.model.User.attributes['content']);
       assert(user.nickname === 'foo nickname');
+      await user.save();
 
       const user2 = new ctx.model.User({
         nickname: 'bar nickname',
@@ -91,7 +95,7 @@ describe('test/typesript/basic/plugin.test.ts', () => {
       assert.equal(p1.description, 'defaultDesc');
     });
 
-    it('should be accessible via ctx.model by define', () => {
+    it('should be accessible via ctx.model by define', async () => {
       assert(ctx.model);
       // access twice to make sure avoiding duplicated model injection
       const Post = ctx.model.Post;
@@ -106,6 +110,10 @@ describe('test/typesript/basic/plugin.test.ts', () => {
         description: 'foo nickname',
       });
       assert(post.description === 'foo nickname');
+      // FIXME nickname should not exist in Post
+      assert.ok(!Post.attributes['nickname']);
+      await post.save();
+      assert.ok(post.id);
 
       const post2 = new ctx.model.Post({
         description: 'bar nickname',
