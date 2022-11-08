@@ -64,14 +64,16 @@ describe('test/typescript/sequelize/plugin.test.ts', () => {
       // access twice to make sure avoiding duplicated model injection
       const User = ctx.model.User;
       assert(ctx.model.User === User);
-      assert(ctx.model.User === User);
       assert(ctx.model !== app.model);
       const ctxModel = ctx.model;
       assert(ctx.model === ctxModel);
       assert(ctx.model.User.ctx === ctx);
+      assert.ok(ctx.model.User.app);
+      assert.ok(ctx.model.User.app === app);
       assert((new ctx.model.User()).ctx === ctx);
       assert(ctx.model.User.app);
-      assert((new ctx.model.User()).app);
+      assert.ok((new ctx.model.User()).app);
+      assert.ok((new ctx.model.User()).app === app);
       assert(ctx.model.User.name === 'User');
 
       const user = ctx.model.User.build({

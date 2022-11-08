@@ -101,11 +101,12 @@ describe('test/typesript/basic/plugin.test.ts', () => {
       // access twice to make sure avoiding duplicated model injection
       const Post = ctx.model.Post;
       assert(ctx.model.Post === Post);
-      assert(ctx.model.Post === Post);
       assert(ctx.model !== app.model);
       const ctxModel = ctx.model;
       assert(ctx.model === ctxModel);
       assert(ctx.model.Post.ctx === ctx);
+      assert.ok(ctx.model.Post.app);
+      assert.ok(ctx.model.Post.app === app);
 
       const post = new ctx.model.Post({
         description: 'foo nickname',
