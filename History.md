@@ -1,3 +1,12 @@
+2.3.0 / 2022-11-09
+==================
+
+## What's Changed
+* feat: rewire prototype of models when subclassing is enabled by @cyjake in https://github.com/eggjs/egg-orm/pull/29
+
+
+**Full Changelog**: https://github.com/eggjs/egg-orm/compare/v2.2.0...v2.3.0
+
 2.2.0 / 2022-09-08
 ==================
 
