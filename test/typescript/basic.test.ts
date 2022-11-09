@@ -68,7 +68,6 @@ describe('test/typesript/basic/plugin.test.ts', () => {
         nickname: 'foo nickname',
         email: 'foo@bar.com',
       });
-      // FIXME content should not exist in Post
       assert.ok(!ctx.model.User.attributes['content']);
       assert(user.nickname === 'foo nickname');
       await user.save();
@@ -113,7 +112,6 @@ describe('test/typesript/basic/plugin.test.ts', () => {
         email: 'foo@bar.com',
       });
       assert(post.description === 'foo nickname');
-      // FIXME nickname should not exist in Post
       assert.ok(!Post.attributes['nickname']);
       await post.save();
       assert.ok(post.id);

@@ -81,7 +81,6 @@ describe('test/typescript/sequelize/plugin.test.ts', () => {
         email: 'foo@bar.com',
       });
       assert(user.nickname === 'foo nickname');
-      // FIXME content should not exist in Post
       assert.ok(!ctx.model.User.attributes['content']);
       await user.save();
       assert.ok(user.id);
