@@ -1,13 +1,8 @@
-import { Column, SequelizeBone, HasMany, DataTypes } from '../../../../../';
+import { Column, HasMany, DataTypes } from '../../../../../';
+import Base from './common/base';
 import Post from './post';
 
-export default class User extends SequelizeBone {
-
-  @Column({
-    primaryKey: true,
-    type: DataTypes.BIGINT,
-  })
-  id: number;
+export default class User extends Base {
 
   @Column({ allowNull: false })
   nickname: string;
@@ -16,7 +11,7 @@ export default class User extends SequelizeBone {
   email: string;
 
   @Column()
-  createdAt: Date;
+  created_at: Date;
 
   @HasMany()
   posts: Post[];

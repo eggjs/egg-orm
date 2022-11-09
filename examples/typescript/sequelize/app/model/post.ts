@@ -1,20 +1,22 @@
-import { Column, BelongsTo, DataTypes, SequelizeBone } from '../../../../../';
+import { Column, BelongsTo, DataTypes } from '../../../../../';
+import Base from './common/base';
 import User from './user';
 
-export default class Post extends SequelizeBone {
-  @Column({ primaryKey: true })
-  id: bigint;
+export default class Post extends Base {
 
   @Column(DataTypes.TEXT)
   content: string;
 
-  @Column()
+  @Column({ defaultValue: 'defaultDesc' })
   get description(): string {
-    return (this.attribute('description') as string) || 'defaultDesc';
+    return this.attribute('description') || 'defaultDesc';
   }
 
   @Column()
-  userId: bigint;
+  created_at: Date;
+
+  @Column()
+  user_id: bigint;
 
   @BelongsTo()
   user: User;

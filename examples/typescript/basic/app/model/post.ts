@@ -14,6 +14,9 @@ export default class Post extends Bone {
   }
 
   @Column()
+  createdAt: Date;
+
+  @Column()
   userId: bigint;
 
   @BelongsTo()
