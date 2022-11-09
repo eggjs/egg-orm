@@ -1,4 +1,4 @@
-import { Column, BelongsTo, DataTypes, SequelizeBone } from '../../../../../';
+import { Column, BelongsTo, DataTypes } from '../../../../../';
 import Base from './common/base';
 import User from './user';
 
