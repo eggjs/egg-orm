@@ -1,3 +1,15 @@
+2.3.1 / 2023-12-19
+==================
+
+## What's Changed
+* Add CodeQL workflow for GitHub code scanning by @lgtm-com in https://github.com/eggjs/egg-orm/pull/32
+* chore: overwrite the default console.error in logQueryError by @cyjake in https://github.com/eggjs/egg-orm/pull/33
+
+## New Contributors
+* @lgtm-com made their first contribution in https://github.com/eggjs/egg-orm/pull/32
+
+**Full Changelog**: https://github.com/eggjs/egg-orm/compare/v2.3.0...v2.3.1
+
 2.3.0 / 2022-11-09
 ==================
 
