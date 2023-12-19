@@ -1,5 +1,7 @@
 'use strict';
 
+const debug = require('debug')('egg-orm');
+
 exports.orm = {
   client: 'mysql',
   database: 'test',
@@ -14,6 +16,15 @@ exports.orm = {
   define: {
     underscored: true,
   },
+
+  logger: {
+    logQuery(sql, duration, options) {
+      debug('[query] [%s] %s', duration, sql);
+    },
+    logQueryError(err, sql, duration, options) {
+      debug('[query] [%s] %s', duration, sql, err);
+    }
+  }
 
   // or put your config into datasources array to connect multiple databases
   // datasources: [],
