@@ -40,6 +40,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "debug": "^4.3.4",
     "leoric": "^2.9.0"
   },
   "devDependencies": {
