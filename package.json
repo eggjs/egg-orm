@@ -1,6 +1,6 @@
 {
   "name": "egg-orm",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Object relational mapping for Egg applications",
   "eggPlugin": {
     "name": "orm"
