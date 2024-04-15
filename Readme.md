@@ -8,7 +8,7 @@ Yet another object-relational mapping plugin for Egg, which is based on [Leoric]
 
 ```bash
 $ npm i --save egg-orm
-$ npm install --save mysql2   # MySQL or compatible dialects
+$ npm install --save mysql    # MySQL or compatible dialects
 
 # Or use other database backend.
 $ npm install --save pg       # PostgreSQL
