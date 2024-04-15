@@ -39,6 +39,14 @@
     "jimmydaddy <heyjimmygo@gmail.com>"
   ],
   "license": "MIT",
+  "homepage": "https://github.com/eggjs/egg-orm",
+  "bugs": {
+    "url": "https://github.com/eggjs/egg/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eggjs/egg-orm.git"
+  },
   "dependencies": {
     "debug": "^4.3.4",
     "leoric": "^2.9.0"
